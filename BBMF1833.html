@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BBMF 1833 · Chapter 4 Algorithm Trading – Live Quiz</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--navy:#14284b;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--bg:#f3f5f9;--muted:#64748b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#0f172a}
+.hidden{display:none!important}
+header{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;flex:1}
+.pill{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;font-size:14px}
+.hbtn{border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;background:#fff;color:var(--navy);font-weight:600}
+.wrap{display:grid;grid-template-columns:250px 1fr;gap:20px;padding:20px;max-width:1500px;margin:auto}
+.side{background:#fff;border-radius:14px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);align-self:start;position:sticky;top:70px}
+#qr{display:flex;justify-content:center;margin:8px 0;cursor:zoom-in}
+.side small{color:var(--muted);word-break:break-all;display:block;font-size:11px}
+.nav-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:12px}
+.nav-grid a{border:1px solid #cbd5e1;border-radius:6px;padding:4px 0;font-size:13px;text-decoration:none;color:#0f172a}
+.nav-grid a.done{background:#dcfce7;border-color:#86efac}
+.warn{background:#fef3c7;color:#92400e;padding:8px;border-radius:8px;font-size:12px;margin-top:8px}
+.sec{color:var(--blue);font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.5px;margin:26px 4px 8px}
+.sec:first-child{margin-top:0}
+.card{background:#fff;border-radius:14px;padding:22px 26px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px;scroll-margin-top:80px}
+.qhead{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;font-weight:600}
+.qtext{font-size:20px;line-height:1.45;margin:10px 0 16px}
+.qtext ul{margin:6px 0}
+table.cf{border-collapse:collapse;margin:10px 0;font-size:16px}
+table.cf td,table.cf th{border:1px solid #cbd5e1;padding:5px 10px;text-align:right}
+table.cf td:first-child,table.cf th:first-child{text-align:left}
+.opt{position:relative;display:block;width:100%;text-align:left;border:2px solid #e2e8f0;background:#fff;border-radius:12px;margin-bottom:10px;overflow:hidden;font-size:17px;padding:0;font-family:inherit;color:inherit}
+.opt .bar{position:absolute;inset:0 auto 0 0;background:#dbeafe;width:0;transition:width .5s}
+.opt .row{position:relative;display:flex;align-items:center;gap:12px;padding:12px 16px}
+.opt .let{font-weight:700;width:30px;height:30px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#host .opt .let{background:var(--navy);color:#fff}
+.opt .txt{flex:1}.opt .cnt{font-weight:700;min-width:95px;text-align:right}
+.opt.correct{border-color:var(--green)}.opt.correct .bar{background:#bbf7d0}.opt.correct .let{background:var(--green)!important;color:#fff}
+.opt.wrong{opacity:.55}
+.opt.sel{border-color:var(--blue);background:#eff6ff}.opt.sel .let{background:var(--blue);color:#fff}
+.opt.wrongsel{border-color:var(--red);background:#fef2f2;opacity:1}
+button.opt{cursor:pointer}button.opt:disabled{cursor:default}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.btn{border:none;border-radius:9px;padding:9px 16px;font-size:14px;cursor:pointer;font-weight:600}
+.b2{background:#e2e8f0}.b3{background:var(--green);color:#fff}.b4{background:#fee2e2;color:var(--red)}
+.stat{margin-left:auto;color:var(--muted);font-size:15px}
+.sol{margin-top:14px;background:#f0fdf4;border-left:5px solid var(--green);padding:14px 18px;border-radius:8px;font-size:16px;line-height:1.55}
+.sol h3{margin:0 0 6px;color:var(--green);font-size:17px}
+.sol table.cf{background:#fff}
+.smsg{color:var(--muted);font-size:14px;margin-top:4px}
+#bigqr{position:fixed;inset:0;background:rgba(15,23,42,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9;color:#fff;cursor:zoom-out}
+#bigqr div{background:#fff;padding:20px;border-radius:16px}
+#student .list{max-width:640px;margin:auto;padding:14px}
+#student .card{padding:18px}
+#student .qtext{font-size:16px}#student .opt{font-size:15px}
+#student table.cf{font-size:12px}#student table.cf td,#student table.cf th{padding:3px 5px}
+#student .sol{font-size:14px;overflow-x:auto}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}.side{position:static}}
+</style>
+</head>
+<body>
+<div id="host" class="hidden">
+  <header>
+    <h1>BBMF 1833 · Chapter 4 Algorithm Trading · Live Quiz</h1>
+    <span class="pill">👥 Joined: <b id="hJoined">0</b></span>
+    <span class="pill" id="hStatus">Connecting…</span>
+    <button class="hbtn" id="bCounts" type="button">Hide counts</button>
+    <button class="hbtn" id="bResetAll" type="button">Reset all</button>
+  </header>
+  <div class="wrap">
+    <aside class="side">
+      <b>Scan to join</b>
+      <div id="qr" title="Click to enlarge"></div>
+      <small id="joinUrl"></small>
+      <div id="fileWarn" class="warn hidden">⚠ Opened as a local file — phones can't reach this link. Host it online (e.g., GitHub Pages).</div>
+      <div class="nav-grid" id="navGrid"></div>
+    </aside>
+    <main id="hList"></main>
+  </div>
+  <div id="bigqr" class="hidden"><div id="qrBig"></div><p style="font-size:22px">Scan to join · click anywhere to close</p></div>
+</div>
+<div id="student" class="hidden">
+  <header><h1>Ch 4 Algo Trading · Live Quiz</h1><span class="pill" id="sProg">0 / 0 answered</span><span class="pill" id="sStatus">Connecting…</span></header>
+  <div class="list" id="sList"></div>
+</div>
+<script>
+const DATA = JSON.parse(decodeURIComponent(escape(atob("W3sibG0iOiAiQWxnb3JpdGhtaWMgVHJhZGluZzogQ29uY2VwdCAmIFJpc2tzIiwgInEiOiAiV2hpY2ggc3RhdGVtZW50IGJlc3QgZGVzY3JpYmVzIGFsZ29yaXRobWljIHRyYWRpbmc/IiwgIm8iOiBbIlRyYWRpbmcgZGVjaXNpb25zIG1hZGUgYnkgaHVtYW4gZGVhbGVycyBiYXNlZCBvbiBtYXJrZXQgaW50dWl0aW9uLiIsICJUcmFkaW5nIG9ubHkgaW4gY3J5cHRvY3VycmVuY2llcyB1c2luZyBvbmxpbmUgZXhjaGFuZ2VzLiIsICJUcmFkaW5nIGRlY2lzaW9ucyBiYXNlZCBvbiBwcmUtc2V0IHJ1bGVzIHRoYXQgYXJlIHByb2dyYW1tZWQgaW50byBhIGNvbXB1dGVyLiJdLCAiYW5zIjogIkMiLCAic29sIjogIkFsZ29yaXRobWljIHRyYWRpbmcgaW52b2x2ZXMgbWFraW5nIHRyYWRpbmcgZGVjaXNpb25zIGJhc2VkIG9uIDxiPnByZS1zZXQgcnVsZXMgdGhhdCBhcmUgcHJvZ3JhbW1lZCBpbnRvIGEgY29tcHV0ZXI8L2I+LiBJdCBpcyBub3QgbGltaXRlZCB0byBhbnkgYXNzZXQgY2xhc3MsIGFuZCB0aGUgZGVjaXNpb25zIGNvbWUgZnJvbSB0aGUgcnVsZXMsIG5vdCBodW1hbiBpbnR1aXRpb24uIn0sIHsibG0iOiAiQWxnb3JpdGhtaWMgVHJhZGluZzogQ29uY2VwdCAmIFJpc2tzIiwgInEiOiAiXCJBbGdvcml0aG1pYyB0cmFkaW5nIGNhbm5vdCBnbyB3cm9uZyBiZWNhdXNlIGNvbXB1dGVycyBkbyBub3QgbWFrZSBtaXN0YWtlcy5cIiBUaGlzIHN0YXRlbWVudCBpczoiLCAibyI6IFsiVHJ1ZSDigJMgYWxnb3JpdGhtcyByZW1vdmUgYWxsIHRyYWRpbmcgcmlzay4iLCAiVHJ1ZSDigJMgYXMgbG9uZyBhcyB0aGUgYWxnb3JpdGhtIGlzIHByb2ZpdGFibGUgaW4gYmFjay10ZXN0aW5nLiIsICJGYWxzZSDigJMgYWxnb3JpdGhtaWMgdHJhZGluZyBoYXMgc2V2ZXJhbCB3ZWFrbmVzc2VzLiJdLCAiYW5zIjogIkMiLCAic29sIjogIjxiPkZhbHNlLjwvYj4gQWxnbyB0cmFkaW5nIGhhcyB3ZWFrbmVzc2VzOjxvbD48bGk+PGI+T3Zlci1yZWxpYW5jZSBvbiBhbGdvcml0aG1zPC9iPiDigJMgdXNpbmcgdGhlIHNhbWUgYWxnb3JpdGhtIGV2ZW4gd2hlbiBtYXJrZXRzIGNoYW5nZS48L2xpPjxsaT48Yj5Nb2RlbCByaXNrPC9iPiDigJMgYWxnb3JpdGhtcyBtYXkgZmFpbCBpbiB1bmV4cGVjdGVkIG1hcmtldCBldmVudHMuPC9saT48bGk+PGI+VG9vIG1hbnkgYWxnb3JpdGhtczwvYj4g4oCTIGNvbmZ1c2luZyBuYW1lcyAoVldBUCwgVFdBUOKApiksIGhhcmQgdG8gY2hvb3NlLjwvbGk+PGxpPjxiPk1hcmtldCBjb21wbGV4aXR5PC9iPiDigJMgYWxnb3JpdGhtcyBpbnRlcmFjdCBhbmQgY2FuIGNhdXNlIGZsYXNoIGNyYXNoZXMuPC9saT48bGk+PGI+TGFjayBvZiB0cmFuc3BhcmVuY3k8L2I+IOKAkyBcImJsYWNrIGJveGVzXCIuPC9saT48bGk+PGI+VGVjaG5pY2FsIGZhaWx1cmVzPC9iPiDigJMgc3lzdGVtIG9yIHNvZnR3YXJlIGJ1Z3MuPC9saT48bGk+PGI+TGFjayBvZiBodW1hbiBqdWRnbWVudDwvYj4g4oCTIG5vIGNvbW1vbiBzZW5zZSBvciBldGhpY3MuPC9saT48bGk+PGI+SGlnaCBzZXR1cCBhbmQgbWFpbnRlbmFuY2UgY29zdHMuPC9iPjwvbGk+PC9vbD4ifSwgeyJsbSI6ICJBbGdvcml0aG1pYyBUcmFkaW5nOiBDb25jZXB0ICYgUmlza3MiLCAicSI6ICJNYW55IGFsZ29yaXRobXMgdHJhZGluZyBhdCB0aGUgc2FtZSB0aW1lIGFmZmVjdCBlYWNoIG90aGVyIGFuZCBjYXVzZSBhIHN1ZGRlbiwgbGFyZ2UgcHJpY2UgZHJvcC4gVGhpcyB3ZWFrbmVzcyBpcyBiZXN0IGRlc2NyaWJlZCBhczoiLCAibyI6IFsiTWFya2V0IGNvbXBsZXhpdHkgKGZsYXNoIGNyYXNoKS4iLCAiSGlnaCBzZXR1cCBhbmQgbWFpbnRlbmFuY2UgY29zdHMuIiwgIkxhY2sgb2YgaHVtYW4ganVkZ21lbnQuIl0sICJhbnMiOiAiQSIsICJzb2wiOiAiPGI+TWFya2V0IGNvbXBsZXhpdHk6PC9iPiBtYW55IGFsZ29yaXRobXMgdHJhZGUgYXQgdGhlIHNhbWUgdGltZSBhbmQgY2FuIGFmZmVjdCBlYWNoIG90aGVyLCBjYXVzaW5nIHN1ZGRlbiBiaWcgcHJpY2UgY2hhbmdlcyBjYWxsZWQgPGI+Zmxhc2ggY3Jhc2hlczwvYj4uIn0sIHsibG0iOiAiQWxnb3JpdGhtIE1vZGVsczogVldBUCAmIFRXQVAiLCAicSI6ICJXaGljaCBzdGF0ZW1lbnQgYmVzdCBkZXNjcmliZXMgdGhlIFZXQVAgKFZvbHVtZSBXZWlnaHRlZCBBdmVyYWdlIFByaWNlKSBhbGdvcml0aG0/IiwgIm8iOiBbIkl0IHBhcnRpY2lwYXRlcyBpbiBwcm9wb3J0aW9uIHRvIHRoZSBpbnRyYWRheSB2b2x1bWUgY3VydmUg4oCTIGlmIDUlIG9mIHRoZSBkYXkncyB2b2x1bWUgdHJhZGVzIGluIGEgcGVyaW9kLCBpdCB0cmFkZXMgNSUgb2YgdGhlIG9yZGVyIGluIHRoYXQgcGVyaW9kLiIsICJJdCBleGVjdXRlcyBvcmRlcnMgYXQgYSBjb25zdGFudCByYXRlIGV2ZW5seSB0aHJvdWdoIHRoZSB3aG9sZSBkYXkuIiwgIkl0IGV4ZWN1dGVzIHRoZSBlbnRpcmUgb3JkZXIgaW1tZWRpYXRlbHkgYXQgdGhlIGJlc3QgYXZhaWxhYmxlIHByaWNlLiJdLCAiYW5zIjogIkEiLCAic29sIjogIlZXQVAgcGFydGljaXBhdGVzIDxiPmluIHByb3BvcnRpb24gdG8gdGhlIGludHJhZGF5IHZvbHVtZSBjdXJ2ZTwvYj4sIHVzaW5nIGEgcHJlLWNvbXB1dGVkIHNjaGVkdWxlIHRvIGV4ZWN1dGUgYSBsYXJnZSBvcmRlciBhbmQgbWluaW1pc2UgbWFya2V0IGltcGFjdC48YnI+PGI+RXhhbXBsZTo8L2I+IGJ1eWluZyAxNSBtaWxsaW9uIEFwcGxlIHNoYXJlcyAoYWJvdXQgaGFsZiBpdHMgYXZlcmFnZSBkYWlseSB2b2x1bWUpIGF0IG9uY2Ugd291bGQgcHVzaCB0aGUgcHJpY2UgdXAsIHNvIFZXQVAgc3BsaXRzIHRoZSBvcmRlciBpbnRvIHNtYWxsIHBpZWNlcyB0aGF0IGZvbGxvdyB0aGUgdm9sdW1lIHBhdHRlcm4uIn0sIHsibG0iOiAiQWxnb3JpdGhtIE1vZGVsczogVldBUCAmIFRXQVAiLCAicSI6ICJBbiBpbnZlc3RvciB3YW50cyB0byBidXkgMTAwLDAwMCBBcHBsZSBzaGFyZXMgc3ByZWFkIGV2ZW5seSBvdmVyIGEgZGVmaW5lZCB0aW1lIHBlcmlvZCwgZm9sbG93aW5nIGEgPGI+Y29uc3RhbnQ8L2I+IHBhcnRpY2lwYXRpb24gcmF0ZSB0aHJvdWdoIHRoZSBkYXkuIFdoaWNoIGFsZ29yaXRobSBmaXRzIGJlc3Q/IiwgIm8iOiBbIlZXQVAiLCAiSGlnaCBmcmVxdWVuY3kgdHJhZGluZyIsICJUV0FQIl0sICJhbnMiOiAiQyIsICJzb2wiOiAiPGI+VFdBUCAoVGltZSBXZWlnaHRlZCBBdmVyYWdlIFByaWNlKTwvYj4gZXhlY3V0ZXMgb3JkZXJzIGZvbGxvd2luZyBhIDxiPmNvbnN0YW50IHBhcnRpY2lwYXRpb24gcmF0ZSB0aHJvdWdoIHRoZSBlbnRpcmUgZGF5PC9iPi4gSXRzIG1vc3QgY29tbW9uIHVzZSBpcyBkaXN0cmlidXRpbmcgYmlnIG9yZGVycyBvdmVyIGEgZGVmaW5lZCB0aW1lIHBlcmlvZCB0byBhdm9pZCBtb3ZpbmcgdGhlIHByaWNlLiJ9LCB7ImxtIjogIkNhbGN1bGF0aW9uczogUE9WICYgVldBUCIsICJxIjogIlVzaW5nIHRoZSBpbnRyYWRheSB2b2x1bWUgc2NoZWR1bGUgYmVsb3cgYW5kIGEgPGI+UE9WIChQZXJjZW50YWdlIG9mIFZvbHVtZSkgYWxnb3JpdGhtIHdpdGggYSA1JSBwYXJ0aWNpcGF0aW9uIHJhdGU8L2I+LCBob3cgbWFueSBzaGFyZXMgYXJlIGJvdWdodCBpbiB0aGUgPGI+MTA6MDDigJMxMTowMDwvYj4gdGltZSBzbGljZT88dGFibGUgY2xhc3M9J2NmJz48dHI+PHRoPlRpbWUgc2xpY2U8L3RoPjx0aD5FeHBlY3RlZCBtYXJrZXQgdm9sdW1lPC90aD48L3RyPjx0cj48dGQ+OTowMOKAkzEwOjAwPC90ZD48dGQ+MTAwLDAwMCAoMjAlKTwvdGQ+PC90cj48dHI+PHRkPjEwOjAw4oCTMTE6MDA8L3RkPjx0ZD43NSwwMDAgKDE1JSk8L3RkPjwvdHI+PHRyPjx0ZD4xMTowMOKAkzEyOjAwPC90ZD48dGQ+NTAsMDAwICgxMCUpPC90ZD48L3RyPjx0cj48dGQ+MTI6MDDigJMxMzowMDwvdGQ+PHRkPjI1LDAwMCAoNSUpPC90ZD48L3RyPjx0cj48dGQ+MTM6MDDigJMxNDowMDwvdGQ+PHRkPjc1LDAwMCAoMTUlKTwvdGQ+PC90cj48dHI+PHRkPjE0OjAw4oCTMTU6MDA8L3RkPjx0ZD4xMDAsMDAwICgyMCUpPC90ZD48L3RyPjx0cj48dGQ+MTU6MDDigJMxNjowMDwvdGQ+PHRkPjc1LDAwMCAoMTUlKTwvdGQ+PC90cj48L3RhYmxlPiIsICJvIjogWyI3NTAiLCAiMyw3NTAiLCAiMTUsMDAwIl0sICJhbnMiOiAiQiIsICJzb2wiOiAiUE9WIGJ1eXMgYSBmaXhlZCAlIG9mIHRoZSBtYXJrZXQgdm9sdW1lIGluIGVhY2ggc2xpY2U6IDc1LDAwMCDDlyA1JSA9IDxiPjMsNzUwPC9iPi48dGFibGUgY2xhc3M9J2NmJz48dHI+PHRoPlRpbWUgc2xpY2U8L3RoPjx0aD5NYXJrZXQgdm9sdW1lPC90aD48dGg+Qm91Z2h0ICg1JSk8L3RoPjwvdHI+PHRyPjx0ZD45OjAw4oCTMTA6MDA8L3RkPjx0ZD4xMDAsMDAwPC90ZD48dGQ+NSwwMDA8L3RkPjwvdHI+PHRyPjx0ZD4xMDowMOKAkzExOjAwPC90ZD48dGQ+NzUsMDAwPC90ZD48dGQ+Myw3NTA8L3RkPjwvdHI+PHRyPjx0ZD4xMTowMOKAkzEyOjAwPC90ZD48dGQ+NTAsMDAwPC90ZD48dGQ+Miw1MDA8L3RkPjwvdHI+PHRyPjx0ZD4xMjowMOKAkzEzOjAwPC90ZD48dGQ+MjUsMDAwPC90ZD48dGQ+MSwyNTA8L3RkPjwvdHI+PHRyPjx0ZD4xMzowMOKAkzE0OjAwPC90ZD48dGQ+NzUsMDAwPC90ZD48dGQ+Myw3NTA8L3RkPjwvdHI+PHRyPjx0ZD4xNDowMOKAkzE1OjAwPC90ZD48dGQ+MTAwLDAwMDwvdGQ+PHRkPjUsMDAwPC90ZD48L3RyPjx0cj48dGQ+MTU6MDDigJMxNjowMDwvdGQ+PHRkPjc1LDAwMDwvdGQ+PHRkPjMsNzUwPC90ZD48L3RyPjwvdGFibGU+In0sIHsibG0iOiAiQ2FsY3VsYXRpb25zOiBQT1YgJiBWV0FQIiwgInEiOiAiVXNpbmcgdGhlIHNhbWUgc2NoZWR1bGUgYW5kIGEgPGI+VldBUCBhbGdvcml0aG08L2I+IHdpdGggYSA8Yj50b3RhbCBvcmRlciBvZiAxMDAsMDAwIHNoYXJlczwvYj4sIGhvdyBtYW55IHNoYXJlcyBhcmUgYm91Z2h0IGluIHRoZSA8Yj45OjAw4oCTMTA6MDA8L2I+IHRpbWUgc2xpY2U/PHRhYmxlIGNsYXNzPSdjZic+PHRyPjx0aD5UaW1lIHNsaWNlPC90aD48dGg+RXhwZWN0ZWQgbWFya2V0IHZvbHVtZTwvdGg+PC90cj48dHI+PHRkPjk6MDDigJMxMDowMDwvdGQ+PHRkPjEwMCwwMDAgKDIwJSk8L3RkPjwvdHI+PHRyPjx0ZD4xMDowMOKAkzExOjAwPC90ZD48dGQ+NzUsMDAwICgxNSUpPC90ZD48L3RyPjx0cj48dGQ+MTE6MDDigJMxMjowMDwvdGQ+PHRkPjUwLDAwMCAoMTAlKTwvdGQ+PC90cj48dHI+PHRkPjEyOjAw4oCTMTM6MDA8L3RkPjx0ZD4yNSwwMDAgKDUlKTwvdGQ+PC90cj48dHI+PHRkPjEzOjAw4oCTMTQ6MDA8L3RkPjx0ZD43NSwwMDAgKDE1JSk8L3RkPjwvdHI+PHRyPjx0ZD4xNDowMOKAkzE1OjAwPC90ZD48dGQ+MTAwLDAwMCAoMjAlKTwvdGQ+PC90cj48dHI+PHRkPjE1OjAw4oCTMTY6MDA8L3RkPjx0ZD43NSwwMDAgKDE1JSk8L3RkPjwvdHI+PC90YWJsZT4iLCAibyI6IFsiNSwwMDAiLCAiMTAwLDAwMCIsICIyMCwwMDAiXSwgImFucyI6ICJDIiwgInNvbCI6ICJWV0FQIGFsbG9jYXRlcyB0aGUgb3JkZXIgYnkgZWFjaCBzbGljZSdzIHNoYXJlIG9mIHRoZSBkYXkncyB2b2x1bWU6IDEwMCwwMDAgw5cgMjAlID0gPGI+MjAsMDAwPC9iPi48dGFibGUgY2xhc3M9J2NmJz48dHI+PHRoPlRpbWUgc2xpY2U8L3RoPjx0aD4lIG9mIHZvbHVtZTwvdGg+PHRoPlNoYXJlcyBib3VnaHQ8L3RoPjwvdHI+PHRyPjx0ZD45OjAw4oCTMTA6MDA8L3RkPjx0ZD4yMCU8L3RkPjx0ZD4yMCwwMDA8L3RkPjwvdHI+PHRyPjx0ZD4xMDowMOKAkzExOjAwPC90ZD48dGQ+MTUlPC90ZD48dGQ+MTUsMDAwPC90ZD48L3RyPjx0cj48dGQ+MTE6MDDigJMxMjowMDwvdGQ+PHRkPjEwJTwvdGQ+PHRkPjEwLDAwMDwvdGQ+PC90cj48dHI+PHRkPjEyOjAw4oCTMTM6MDA8L3RkPjx0ZD41JTwvdGQ+PHRkPjUsMDAwPC90ZD48L3RyPjx0cj48dGQ+MTM6MDDigJMxNDowMDwvdGQ+PHRkPjE1JTwvdGQ+PHRkPjE1LDAwMDwvdGQ+PC90cj48dHI+PHRkPjE0OjAw4oCTMTU6MDA8L3RkPjx0ZD4yMCU8L3RkPjx0ZD4yMCwwMDA8L3RkPjwvdHI+PHRyPjx0ZD4xNTowMOKAkzE2OjAwPC90ZD48dGQ+MTUlPC90ZD48dGQ+MTUsMDAwPC90ZD48L3RyPjwvdGFibGU+In0sIHsibG0iOiAiQ2FsY3VsYXRpb25zOiBQT1YgJiBWV0FQIiwgInEiOiAiUHJvamVjdGVkIHZvbHVtZSBmb3IgWFlaIHN0b2NrIGlzIHNob3duIGJlbG93LiBVc2luZyB0aGUgPGI+UE9WIGFsZ29yaXRobTwvYj4gd2l0aCBhIDxiPjEwJSBwYXJ0aWNpcGF0aW9uIHJhdGU8L2I+LCBob3cgbWFueSBYWVogc2hhcmVzIGFyZSBwdXJjaGFzZWQgZnJvbSA8Yj45IGFtIHRvIDMgcG08L2I+Pzx0YWJsZSBjbGFzcz0nY2YnPjx0cj48dGg+VGltZSBzbGljZTwvdGg+PHRoPlZvbHVtZTwvdGg+PC90cj48dHI+PHRkPjkgYW0g4oCTIDExIGFtPC90ZD48dGQ+ODAsMDAwPC90ZD48L3RyPjx0cj48dGQ+MTEgYW0g4oCTIDEyIHBtPC90ZD48dGQ+MTUwLDAwMDwvdGQ+PC90cj48dHI+PHRkPjIgcG0g4oCTIDMgcG08L3RkPjx0ZD4xMjAsMDAwPC90ZD48L3RyPjx0cj48dGQ+MyBwbSDigJMgNCBwbTwvdGQ+PHRkPjI1MCwwMDA8L3RkPjwvdHI+PC90YWJsZT4iLCAibyI6IFsiMzUsMDAwIiwgIjYwLDAwMCIsICIzNTAsMDAwIl0sICJhbnMiOiAiQSIsICJzb2wiOiAiT25seSB0aGUgc2xpY2VzIHVwIHRvIDMgcG0gY291bnQ6PGJyPjgwLDAwMCDDlyAxMCUgPSA4LDAwMDxicj4xNTAsMDAwIMOXIDEwJSA9IDE1LDAwMDxicj4xMjAsMDAwIMOXIDEwJSA9IDEyLDAwMDxicj48Yj5Ub3RhbCA9IDM1LDAwMDwvYj48YnI+PGk+NjAsMDAwIHdyb25nbHkgaW5jbHVkZXMgM+KAkzQgcG07IDM1MCwwMDAgaXMgdGhlIG1hcmtldCB2b2x1bWUsIG5vdCB0aGUgc2hhcmVzIGJvdWdodC48L2k+In0sIHsibG0iOiAiQ2FsY3VsYXRpb25zOiBQT1YgJiBWV0FQIiwgInEiOiAiVXNpbmcgdGhlIHNhbWUgWFlaIHZvbHVtZSBzY2hlZHVsZSBhbmQgdGhlIDxiPlZXQVAgYWxnb3JpdGhtPC9iPiwgaWYgdGhlIHRvdGFsIFhZWiBwdXJjaGFzZSBmb3IgdGhlIGRheSBpcyA8Yj45MDAsMDAwIHNoYXJlczwvYj4sIGhvdyBtYW55IHNoYXJlcyBhcmUgcHVyY2hhc2VkIGZyb20gPGI+OSBhbSB0byAzIHBtPC9iPj88dGFibGUgY2xhc3M9J2NmJz48dHI+PHRoPlRpbWUgc2xpY2U8L3RoPjx0aD5Wb2x1bWU8L3RoPjwvdHI+PHRyPjx0ZD45IGFtIOKAkyAxMSBhbTwvdGQ+PHRkPjgwLDAwMDwvdGQ+PC90cj48dHI+PHRkPjExIGFtIOKAkyAxMiBwbTwvdGQ+PHRkPjE1MCwwMDA8L3RkPjwvdHI+PHRyPjx0ZD4yIHBtIOKAkyAzIHBtPC90ZD48dGQ+MTIwLDAwMDwvdGQ+PC90cj48dHI+PHRkPjMgcG0g4oCTIDQgcG08L3RkPjx0ZD4yNTAsMDAwPC90ZD48L3RyPjwvdGFibGU+IiwgIm8iOiBbIjM3NSwwMDAiLCAiNTI1LDAwMCIsICI5MDAsMDAwIl0sICJhbnMiOiAiQiIsICJzb2wiOiAiVG90YWwgZGF5IHZvbHVtZSA9IDYwMCwwMDAuPHRhYmxlIGNsYXNzPSdjZic+PHRyPjx0aD5UaW1lIHNsaWNlPC90aD48dGg+V2VpZ2h0PC90aD48dGg+U2hhcmVzIGJvdWdodDwvdGg+PC90cj48dHI+PHRkPjnigJMxMSBhbTwvdGQ+PHRkPjgwLzYwMDwvdGQ+PHRkPjEyMCwwMDA8L3RkPjwvdHI+PHRyPjx0ZD4xMSBhbeKAkzEyIHBtPC90ZD48dGQ+MTUwLzYwMDwvdGQ+PHRkPjIyNSwwMDA8L3RkPjwvdHI+PHRyPjx0ZD4y4oCTMyBwbTwvdGQ+PHRkPjEyMC82MDA8L3RkPjx0ZD4xODAsMDAwPC90ZD48L3RyPjx0cj48dGQ+M+KAkzQgcG08L3RkPjx0ZD4yNTAvNjAwPC90ZD48dGQ+Mzc1LDAwMDwvdGQ+PC90cj48L3RhYmxlPjkgYW0g4oCTIDMgcG0gPSA5MDAsMDAwIMOXIDM1MC82MDAgPSA8Yj41MjUsMDAwPC9iPi48YnI+PGk+Tm90ZTogaWYgdGhlIDnigJMxMSBhbSB3ZWlnaHQgaXMgcm91bmRlZCB0byAxMyUsIHlvdSBnZXQgMTE3LDAwMCBmb3IgdGhhdCBzbGljZSBhbmQgYSB0b3RhbCBvZiA1MjIsMDAwLjwvaT4ifSwgeyJsbSI6ICJIaWdoIEZyZXF1ZW5jeSBUcmFkaW5nIChIRlQpIiwgInEiOiAiV2hpY2ggb2YgdGhlIGZvbGxvd2luZyBpcyA8Yj5OT1Q8L2I+IGEgY2hhcmFjdGVyaXN0aWMgb2YgaGlnaCBmcmVxdWVuY3kgdHJhZGluZyAoSEZUKT8iLCAibyI6IFsiSG9sZGluZyBsYXJnZSBwb3NpdGlvbnMgb3Zlcm5pZ2h0IGZvciBzZXZlcmFsIHdlZWtzIHRvIGNhcHR1cmUgbG9uZy10ZXJtIHRyZW5kcy4iLCAiQXV0b21hdGVkIHRyYWRpbmcg4oCTIGFsZ29yaXRobXMgZGVjaWRlIHdoYXQsIHdoZW4sIGFuZCBob3cgbXVjaCB0byB0cmFkZSB1c2luZyByZWFsLXRpbWUgbWFya2V0IGRhdGEuIiwgIk5vIG5ldCBpbnZlc3RtZW50IOKAkyBsb25nIGFuZCBzaG9ydCBwb3NpdGlvbnMgYXJlIGNsb3NlZCBieSB0aGUgZW5kIG9mIGVhY2ggZGF5LiJdLCAiYW5zIjogIkEiLCAic29sIjogIlRoZSB0aHJlZSBjaGFyYWN0ZXJpc3RpY3Mgb2YgSEZUIGFyZTo8b2w+PGxpPjxiPkF1dG9tYXRlZCB0cmFkaW5nPC9iPiDigJMgYWxnb3JpdGhtcyBkZWNpZGUgd2hhdCB0byBidXkgb3Igc2VsbCwgdGhlIHByaWNlLCBzaXplLCBhbmQgdGltaW5nIHVzaW5nIHJlYWwtdGltZSBkYXRhIChwcmljZSBzaWduYWxzLCBtb21lbnR1bSwgdm9sYXRpbGl0eSwgbGlxdWlkaXR5LCBvcmRlciBib29rKSwgd2l0aG91dCBodW1hbiBpbnRlcmFjdGlvbi48L2xpPjxsaT48Yj5ObyBuZXQgaW52ZXN0bWVudDwvYj4g4oCTIGludmVudG9yeSBpbWJhbGFuY2VzIGFyZSBuZXR0ZWQgb3V0IGJ5IHRoZSBjbG9zZTsgcG9zaXRpb25zIGFyZSBjbG9zZWQgYmVmb3JlIHRoZSBlbmQgb2YgdGhlIGRheSwgc28gdGhlcmUgaXMgPGI+bm8gb3Zlcm5pZ2h0IHJpc2s8L2I+LjwvbGk+PGxpPjxiPlNob3J0IHRyYWRpbmcgaG9yaXpvbnM8L2I+IOKAkyBmcm9tIHNlY29uZHMgdG8gbWludXRlcywgdXAgdG8gaG91cnMuPC9saT48L29sPkhvbGRpbmcgcG9zaXRpb25zIG92ZXJuaWdodCBmb3Igd2Vla3MgY29udHJhZGljdHMgYm90aCBwb2ludHMgMiBhbmQgMy4ifV0="))));
+const KEY="bbmf1833ch4";
+const L=["A","B","C"], N=DATA.length;
+const joinId=new URLSearchParams(location.search).get("join");
+const $=id=>document.getElementById(id);
+function buildCards(container,isHost){
+  let last="";
+  DATA.forEach((d,i)=>{
+    if(d.lm!==last){last=d.lm;const s=document.createElement("div");s.className="sec";s.textContent=d.lm;container.appendChild(s)}
+    const c=document.createElement("div");c.className="card";c.id=(isHost?"h":"s")+"q"+i;
+    const tag=isHost?"div":"button";
+    c.innerHTML=`<div class="qhead"><span>Question ${i+1} of ${N}</span><span class="badge"></span></div>
+      <div class="qtext">${d.q}</div>
+      ${d.o.map((t,k)=>`<${tag} ${isHost?"":'type="button"'} class="opt" data-k="${k}"><div class="bar"></div><div class="row"><span class="let">${L[k]}</span><span class="txt">${t}</span><span class="cnt"></span></div></${tag}>`).join("")}
+      ${isHost?`<div class="controls">
+        <button class="btn b3 rev" type="button">✅ Show answer & solution</button>
+        <button class="btn b2 lock" type="button">🔒 Lock voting</button>
+        <button class="btn b4 rst" type="button">Reset</button>
+        <span class="stat"><b class="ans">0</b> answered</span></div>`:`<div class="smsg"></div>`}
+      <div class="sol hidden"><h3></h3><div class="soltext"></div></div>`;
+    container.appendChild(c);
+  });
+}
+function startHost(){
+  $("host").classList.remove("hidden");
+  const blank=()=>({votes:DATA.map(()=>({})),revealed:DATA.map(()=>false),locked:DATA.map(()=>false)});
+  let st=JSON.parse(localStorage.getItem(KEY+"_state")||"null")||blank();
+  let showCounts=true;const conns=new Map();
+  const save=()=>localStorage.setItem(KEY+"_state",JSON.stringify(st));
+  buildCards($("hList"),true);
+  DATA.forEach((_,i)=>{const a=document.createElement("a");a.href="#hq"+i;a.textContent=i+1;$("navGrid").appendChild(a)});
+  function renderQ(i){
+    const card=$("hq"+i),d=DATA[i],c=[0,0,0];
+    Object.values(st.votes[i]).forEach(v=>{const k=L.indexOf(v);if(k>=0)c[k]++});
+    const tot=c[0]+c[1]+c[2],rev=st.revealed[i];
+    card.querySelectorAll(".opt").forEach((o,k)=>{
+      const pct=tot?Math.round(c[k]/tot*100):0;
+      o.className="opt"+(rev?(L[k]===d.ans?" correct":" wrong"):"");
+      o.querySelector(".bar").style.width=(showCounts?pct:0)+"%";
+      o.querySelector(".cnt").textContent=showCounts?`${c[k]} · ${pct}%`:"";
+    });
+    card.querySelector(".ans").textContent=tot;
+    card.querySelector(".rev").textContent=rev?"🙈 Hide answer":"✅ Show answer & solution";
+    card.querySelector(".lock").textContent=st.locked[i]?"🔓 Unlock voting":"🔒 Lock voting";
+    card.querySelector(".badge").textContent=rev?"Answer revealed":st.locked[i]?"Voting locked":"Voting open";
+    const sol=card.querySelector(".sol");sol.classList.toggle("hidden",!rev);
+    sol.querySelector("h3").textContent="Answer: "+d.ans;sol.querySelector(".soltext").innerHTML=d.sol;
+    $("navGrid").children[i].classList.toggle("done",rev);
+  }
+  const updJoined=()=>$("hJoined").textContent=new Set([...conns.values()].map(x=>x.sid).filter(Boolean)).size;
+  const renderAll=()=>{for(let i=0;i<N;i++)renderQ(i);updJoined()};
+  const payload=sid=>({type:"state",revealed:st.revealed,locked:st.locked,
+      ans:DATA.map((d,i)=>st.revealed[i]?d.ans:null),sol:DATA.map((d,i)=>st.revealed[i]?d.sol:null),
+      mine:st.votes.map(v=>v[sid]||null)});
+  const broadcast=()=>conns.forEach(x=>{if(x.conn.open&&x.sid)x.conn.send(payload(x.sid))});
+  const commit=i=>{save();i==null?renderAll():renderQ(i);broadcast()};
+  DATA.forEach((_,i)=>{const card=$("hq"+i);
+    card.querySelector(".rev").onclick=()=>{st.revealed[i]=!st.revealed[i];commit(i)};
+    card.querySelector(".lock").onclick=()=>{st.locked[i]=!st.locked[i];commit(i)};
+    card.querySelector(".rst").onclick=()=>{if(confirm(`Clear votes for Q${i+1}?`)){st.votes[i]={};st.revealed[i]=false;st.locked[i]=false;commit(i)}};
+  });
+  $("bCounts").onclick=()=>{showCounts=!showCounts;$("bCounts").textContent=showCounts?"Hide counts":"Show counts";renderAll()};
+  $("bResetAll").onclick=()=>{if(confirm("Clear ALL votes and reveals?")){st=blank();commit(null)}};
+  let hostId=localStorage.getItem(KEY+"_hostId");
+  if(!hostId){hostId=KEY+"-"+Math.random().toString(36).slice(2,10);localStorage.setItem(KEY+"_hostId",hostId)}
+  if(location.protocol==="file:")$("fileWarn").classList.remove("hidden");
+  const url=location.origin+location.pathname+"?join="+hostId;
+  $("joinUrl").textContent=url;
+  new QRCode($("qr"),{text:url,width:210,height:210,correctLevel:QRCode.CorrectLevel.M});
+  new QRCode($("qrBig"),{text:url,width:520,height:520,correctLevel:QRCode.CorrectLevel.M});
+  $("qr").onclick=()=>$("bigqr").classList.remove("hidden");
+  $("bigqr").onclick=()=>$("bigqr").classList.add("hidden");
+  const peer=new Peer(hostId);
+  peer.on("open",()=>$("hStatus").textContent="🟢 Live");
+  peer.on("disconnected",()=>{$("hStatus").textContent="🟡 Reconnecting…";setTimeout(()=>peer.reconnect(),1500)});
+  peer.on("error",e=>$("hStatus").textContent=e.type==="unavailable-id"?"⚠ Open in another tab":"⚠ "+e.type);
+  peer.on("connection",conn=>{
+    conns.set(conn.peer,{conn,sid:null});
+    conn.on("data",m=>{const rec=conns.get(conn.peer);if(!rec)return;
+      if(m.type==="hello"){rec.sid=m.sid;conn.send(payload(m.sid));updJoined()}
+      if(m.type==="vote"){const i=m.idx;
+        if(!(i>=0&&i<N)||st.locked[i]||st.revealed[i]||!L.includes(m.choice))return;
+        st.votes[i][m.sid]=m.choice;save();renderQ(i);conn.send(payload(m.sid));}
+    });
+    const drop=()=>{conns.delete(conn.peer);updJoined()};
+    conn.on("close",drop);conn.on("error",drop);
+  });
+  renderAll();
+}
+function startStudent(){
+  $("student").classList.remove("hidden");
+  let sid=localStorage.getItem(KEY+"_sid");
+  if(!sid){sid="s"+Math.random().toString(36).slice(2,12);localStorage.setItem(KEY+"_sid",sid)}
+  buildCards($("sList"),false);
+  let conn=null,st={revealed:DATA.map(()=>false),locked:DATA.map(()=>false),ans:[],sol:[],mine:DATA.map(()=>null)};
+  DATA.forEach((_,i)=>$("sq"+i).querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+    const ch=L[+b.dataset.k];
+    if(!conn||!conn.open){alert("Not connected yet — please wait a moment.");return}
+    if(st.locked[i]||st.revealed[i])return;
+    conn.send({type:"vote",sid,idx:i,choice:ch});st.mine[i]=ch;renderQ(i);prog();
+  })));
+  function renderQ(i){
+    const card=$("sq"+i),rev=st.revealed[i],lock=st.locked[i]||rev,mine=st.mine[i],ans=st.ans[i];
+    card.querySelectorAll(".opt").forEach((b,k)=>{const l=L[k];let c="opt";
+      if(rev){if(l===ans)c+=" correct";else if(l===mine)c+=" wrongsel";else c+=" wrong"}
+      else if(l===mine)c+=" sel";
+      b.className=c;b.disabled=lock;});
+    card.querySelector(".badge").textContent=rev?"Answer revealed":lock?"Locked":mine?"✔ Answered":"";
+    card.querySelector(".smsg").textContent=rev?(mine?(mine===ans?"🎉 Correct!":"❌ Not quite — see the solution."):"You didn't answer this one."):
+      lock?(mine?`Voting closed. Your answer: ${mine}`:"Voting closed."):mine?`Your answer: ${mine} (tap another to change)`:"";
+    const sol=card.querySelector(".sol");sol.classList.toggle("hidden",!rev);
+    if(rev){sol.querySelector("h3").textContent="Answer: "+ans;sol.querySelector(".soltext").innerHTML=st.sol[i]}
+  }
+  const prog=()=>$("sProg").textContent=`${st.mine.filter(Boolean).length} / ${N} answered`;
+  const renderAll=()=>{for(let i=0;i<N;i++)renderQ(i);prog()};
+  renderAll();
+  const peer=new Peer();
+  function connect(){
+    $("sStatus").textContent="Connecting…";
+    conn=peer.connect(joinId,{reliable:true});
+    conn.on("open",()=>{$("sStatus").textContent="🟢 Connected";conn.send({type:"hello",sid})});
+    conn.on("data",m=>{if(m.type==="state"){st=m;renderAll()}});
+    conn.on("close",()=>{$("sStatus").textContent="🔴 Reconnecting…";setTimeout(connect,2500)});
+  }
+  peer.on("open",connect);
+  peer.on("disconnected",()=>setTimeout(()=>peer.reconnect(),1500));
+  peer.on("error",e=>{if(e.type==="peer-unavailable"){$("sStatus").textContent="Waiting for host…";setTimeout(connect,3000)}else $("sStatus").textContent="⚠ "+e.type});
+}
+joinId?startStudent():startHost();
+</script>
+</body>
+</html>
